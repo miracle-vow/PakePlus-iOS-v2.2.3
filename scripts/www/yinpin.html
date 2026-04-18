@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>麦克风访问示例</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    </head>
+    <body>
+        <h2>麦克风访问演示</h2>
+
+        <button id="startBtn">开始录音</button>
+        <button id="stopBtn" disabled>停止录音</button>
+        <button id="playBtn" disabled>播放录音</button>
+
+        <div>
+            <p id="status">点击"开始录音"按钮</p>
+            <audio id="audioPlayback" controls></audio>
+        </div>
+
+        <script>
+            const startBtn = document.getElementById('startBtn')
+            const stopBtn = document.getElementById('stopBtn')
+            const playBtn = document.getElementById('playBtn')
+            const statusText = document.getElementById('status')
+            const audioPlayback = document.getElementById('audioPlayback')
+
+            let mediaRecorder
+            let audioChunks = []
+
+            // 开始录音
+            startBtn.addEventListener('click', async () => {
+                try {
+                    // 请求麦克风权限
+                    const stream = await navigator.mediaDevices.getUserMedia({
+                        audio: {
+                            channelCount: 1, // 单声道
+                            sampleRate: 44100, // 采样率
+                            echoCancellation: true, // 回声消除
+                        },
+                        video: false,
+                    })
+
+                    statusText.textContent = '正在录音...'
+                    startBtn.disabled = true
+                    stopBtn.disabled = false
+
+                    // 创建MediaRecorder实例
+                    mediaRecorder = new MediaRecorder(stream)
+
+                    // 收集音频数据
+                    mediaRecorder.ondataavailable = (event) => {
+                        if (event.data.size > 0) {
+                            audioChunks.push(event.data)
+                        }
+                    }
+
+                    // 录音完成
+                    mediaRecorder.onstop = () => {
+                        const audioBlob = new Blob(audioChunks, {
+                            type: 'audio/webm',
+                        })
+                        const audioUrl = URL.createObjectURL(audioBlob)
+                        audioPlayback.src = audioUrl
+                        playBtn.disabled = false
+                        statusText.textContent = '录音完成，点击播放按钮试听'
+                    }
+
+                    // 开始录音
+                    audioChunks = []
+                    mediaRecorder.start()
+                } catch (error) {
+                    console.error('访问麦克风失败:', error)
+                    statusText.textContent = '麦克风访问失败: ' + error.message
+                }
+            })
+
+            // 停止录音
+            stopBtn.addEventListener('click', () => {
+                if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+                    mediaRecorder.stop()
+                    startBtn.disabled = false
+                    stopBtn.disabled = true
+                }
+            })
+
+            // 播放录音
+            playBtn.addEventListener('click', () => {
+                audioPlayback.play()
+            })
+        </script>
+    </body>
+</html>

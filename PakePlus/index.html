@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>PakePlus</h1>
+        <button id="position">获取位置</button>
+        <div id="position-result"></div>
+    </body>
+    <script>
+        document.getElementById('position').addEventListener('click', () => {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    document.getElementById('position-result').innerHTML =
+                        JSON.stringify(position)
+                },
+                (error) => {
+                    document.getElementById('position-result').innerHTML =
+                        error.message
+                },
+                { enableHighAccuracy: true, timeout: 30000, maximumAge: 0 }
+            )
+        })
+    </script>
+</html>

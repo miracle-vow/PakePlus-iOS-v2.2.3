@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" href="./assets/css/styles.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>PakePlus App</title>
+        <script type="module" src="./assets/js/main.js" defer></script>
+    </head>
+
+    <body>
+        <main class="container">
+            <a href="./app.html" target="_blank">
+                <h1>PakePlus</h1>
+            </a>
+            <form class="row" id="greet-form">
+                <input id="inputValue" placeholder="Enter a something..." />
+            </form>
+            <div class="resultBox">
+                <span>result: xxxxx</span>
+                <span id="result"></span>
+            </div>
+            <div class="invokeBox">
+                <a
+                    href="https://pakeplus.com/zh/"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    _blank
+                </a>
+                <a
+                    href="https://pakeplus.com/zh/"
+                    target="_self"
+                    rel="noopener"
+                >
+                    _self
+                </a>
+                <a
+                    href="https://pakeplus.com/zh/"
+                    target="_parent"
+                    rel="noopener"
+                >
+                    _parent
+                </a>
+                <a href="https://pakeplus.com/zh/" target="_top" rel="noopener">
+                    _top
+                </a>
+                <a href="./yinpin.html" target="_blank"> 访问麦克风 </a>
+                <a href="./video.html" target="_blank"> 访问摄像头 </a>
+                <button id="openUrl" type="button">open_url_browser</button>
+                <button id="openUrlNew" type="button">open_url_new</button>
+                <button id="runCommand" type="button">run_command</button>
+                <button id="downloadFile" type="button">download_file</button>
+                <button id="getExeDir" type="button">get_exe_dir</button>
+                <button id="getEnvVar" type="button">get_env_var</button>
+                <button id="findPort" type="button">find_port</button>
+                <button id="openAskDialog" type="button">openAskDialog</button>
+                <button id="openConfirmDialog" type="button">
+                    openConfirmDialog
+                </button>
+                <button id="openMessageDialog" type="button">
+                    openMessageDialog
+                </button>
+                <button id="openFileDialog" type="button">
+                    openFileDialog
+                </button>
+                <button id="openDirDialog" type="button">openDirDialog</button>
+                <button id="openSaveDialog" type="button">
+                    openSaveDialog
+                </button>
+                <!-- video capture -->
+                <button id="videoTest" type="button">VideoTest</button>
+                <!-- audio capture -->
+                <button id="audioTest" type="button">AudioTest</button>
+                <!-- file api -->
+                <button id="createFile" type="button">createFile</button>
+                <button id="writeTextFile" type="button">writeTextFile</button>
+                <button id="writeBinaryFile" type="button">
+                    writeBinaryFile
+                </button>
+                <button id="readTextFile" type="button">readTextFile</button>
+                <button id="readBinaryFile" type="button">
+                    readBinaryFile
+                </button>
+                <button id="readFile" type="button">readFile</button>
+                <button id="openFile" type="button">openFile</button>
+                <button id="readDir" type="button">readDir</button>
+                <button id="mkdir" type="button">mkdir</button>
+                <button id="watch" type="button">watch</button>
+                <button id="watchImmediate" type="button">
+                    watchImmediate
+                </button>
+                <button id="size" type="button">size</button>
+                <button id="exists" type="button">exists</button>
+                <button id="remove" type="button">remove</button>
+                <button id="copyFile" type="button">copyFile</button>
+                <button id="rename" type="button">rename</button>
+                <!-- app action -->
+                <button id="setWindowTitle" type="button">
+                    setWindowTitle
+                </button>
+                <button id="hide" type="button">hide</button>
+                <button id="show" type="button">show</button>
+                <button id="maximize" type="button">maximize</button>
+                <button id="unmaximize" type="button">unmaximize</button>
+                <button id="toggleMaximize" type="button">
+                    toggleMaximize
+                </button>
+                <button id="minimize" type="button">minimize</button>
+                <button id="unminimize" type="button">unminimize</button>
+                <button id="exit" type="button">exit</button>
+                <button id="relaunch" type="button">relaunch</button>
+            </div>
+            <!-- video capture -->
+            <video
+                id="videoCapture"
+                controls
+                playsinline
+                width="100%"
+                height="100%"
+            ></video>
+            <!-- audio -->
+            <audio
+                src="https://self.pakeplus.com/likeme.mp3"
+                controls
+                width="100%"
+                height="100%"
+                class="audio"
+            ></audio>
+            <video
+                src="https://gh-proxy.org/https://github.com/worker500/FileHub/blob/main/root/IronMan.mp4"
+                controls
+                width="100%"
+                height="100%"
+                class="video"
+            ></video>
+            <img src="./assets/imgs/app.webp" alt="team" class="img" />
+        </main>
+    </body>
+</html>
